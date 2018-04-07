@@ -1,0 +1,33 @@
+<%= form_for @post, html: { multipart: true } do |f| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, id: :post_title, class: "form-control"%>
+  </div>
+
+  <div class="field form-group">
+    <%= f.file_field :image, id: :image, class: "form-control"%>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :text %>
+    <%= f.text_area :text, id: :post_text, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :submit, class: 'btn btn-primary' %>
+
+    <%= link_to 'Voltar', posts_path, class: 'btn btn-primary' %>
+  </div>
+<% end %>

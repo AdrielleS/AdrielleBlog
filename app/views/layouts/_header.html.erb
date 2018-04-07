@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle ="collapse"
+			data-target= "#barra-nav" aria-expanded ="false">
+				<span class="sr-only"> Alternando menu</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>	
+			</button>
+			<a class="navbar-brand" href="/">
+				<span class= "roxo">Adrielle</span>Blog
+			</a>
+
+			
+		</div>
+
+		<div class="collapse navbar-collapse" id="barra-nav">
+			
+			<ul class="nav navbar-nav navbar-right">
+				<% if user_signed_in?%>
+		            <a ><%= link_to 'Nova postagem   |', new_post_path, class: "dropdown-item" %></a>
+		            <a ><%=link_to "Editar conta  | ",  edit_user_registration_path , class: "dropdown-item"%></a>
+		            <a ><%= link_to "Sair", destroy_user_session_path, method: :delete, class: "dropdown-item" %></a>
+		        <% else%>
+		           <a ><%= link_to "Entrar", new_user_session_path, class: "dropdown-item" %></a>
+		           <a ><%= link_to "cadastrar", new_user_registration_path, class: "dropdown-item" %></a>
+          		<% end%>
+				
+			</ul>
+			
+		</div>
+		
+	</div>
+	
+</nav>

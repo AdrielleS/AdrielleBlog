@@ -1,0 +1,40 @@
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12" >
+        <% if user_signed_in? %>
+          <h4 ><%= link_to "Baixar postagens", posts_path(format: "xlsx") %></h4>
+        <% end %>
+      </div>  
+    </div>
+
+    <div class="row ">
+        <% @posts.each do |post| %>
+
+        <div class="col-md-3" >
+
+        <%= image_tag post.image.url(:thumb)%>
+        </div>
+
+        <div class="col-md-9 ">
+          <h2><%= link_to post.title, post%></h2>
+            <p > <%=  truncate(post.text, lenght:200 , separator: '')%> </p>
+          <p>
+            <% if user_signed_in? %>
+              <%= link_to 'Editar', edit_post_path(post) %>
+              <%= link_to 'Deletar', post, method: :delete, data: { confirm: 'Confime se deseja excluir a publicação' } %>
+            <%end%>
+           
+          </p>
+        </div>
+        <br>
+
+        <% end %> 
+        
+      </div>
+        
+
+  <hr>
+    
+ 

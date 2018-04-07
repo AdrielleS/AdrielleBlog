@@ -1,0 +1,28 @@
+<div class="container">
+	<%if @post.comments.size > 0%>
+		<div class="jumbotron">
+			<ul>
+				<% @comments.each do |comment| %>
+					<li>
+						<p>
+							<%= comment.name %>
+							 - </small>
+							<small class="small_font"> <%= time_ago_in_words(comment.created_at)%> atrás</small>
+						</p>
+						<p>
+							<%= raw comment.comment %>
+						</p>
+						
+				<%end%>
+			</ul>	
+		</div>
+	<%else%>
+		<div class="jumbotron">
+			<h3>Não esxistem comentários !</h3>
+		</div>
+	<%end%>
+
+	<%= link_to post_path(@post), class:'btn-btn-link' do %>
+	<i class="glyphicon glyphicon-arrow-left"> Voltar</i>
+	<% end%>
+</div>

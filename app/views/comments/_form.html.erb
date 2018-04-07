@@ -1,0 +1,16 @@
+<%= form_for([@post, @comment]) do |f| %> 
+	<p class="form-group">
+	<%= f.label :Nome %><br/>
+	<%= f.text_field :name, autofocus: true, class:"form-control" %>
+	</p>
+
+	<p class="form-group">
+	<%= f.label :Comentário %><br/>
+	<%= f.trix_editor  :comment, placeholder:"Escreva seu comentário ..." ,class:"form-control"
+	%>
+	</p>
+
+	<p><%= f.submit "Salvar",class:'btn btn-primary' %>
+	<%= link_to 'Cancelar', post_comments_path(@post) , class: 'btn btn-default'%>
+	</p>
+<% end %>

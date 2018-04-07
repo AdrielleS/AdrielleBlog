@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="col-md-5 col-md-offset-3">
+		<div class="row">
+			<h1><%= @post.title %></h1>
+			<p>Publicado em <%= @post.created_at.strftime('%b, %d %Y') %></p>
+		</div>
+		<div class="row">
+			<p>
+				<%= image_tag @post.image.url(:medium) %>
+
+			</p>
+			<p align="justify">
+  				<%=  @post.text %>
+			</p>
+
+			<p>
+				<% if user_signed_in? %>
+					<%= link_to  edit_post_path(@post), class:'btn-btn-link' do%> 
+					<i class="glyphicon glyphicon-pencil">Editar</i>
+					<%end%>
+					<%= link_to @post, method: :delete, data: { confirm: 'Confime se deseja excluir a publicação' } , class:'btn-btn-link' do%>
+					<i class="glyphicon glyphicon-trash">Deletar</i>
+					<% end %>
+				<%end%>
+			</p>
+
+			<%= link_to posts_path, class:'btn-btn-link' do %>
+				<i class="glyphicon glyphicon-arrow-left"> Voltar</i>
+			<% end%>
+			<br>
+
+			<%=link_to pluralize(@post.comments.size, 'Comentário', 'Comentários'), post_comments_path(@post)%>
+			<br>
+			<%=link_to 'Novo comentário', new_post_comment_path(@post), class: 'btn btn-primary'%>
+			<br>
+			
+		
+		</div>
+
+	</div>
+	
+</div>
+
